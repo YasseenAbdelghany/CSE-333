@@ -1,0 +1,79 @@
+OPERATING SYSTEMS LAB-5: CODE WALKTHROUGH
+
+Task 1: Child Process Creation in process_creation.c
+
+This code uses the fork() system call to initiate a new process, splitting the program into parent and child operations.
+
+Code Actions:
+* fork() triggers duplication of the current process.
+* The resulting identifier: '0' for child, child's PID for parent. '-1' means creation failed.
+
+Main Process Flow:
+1. fork() executes, initiating another process.
+2. If the identifier is 0, the process is the child and displays its PID.
+3. If the identifier is greater than 0, it's the parent, displaying its PID.
+4. On failure, a suitable error message is shown.
+
+This illustrates how processes can run simultaneously after forking from a single program.
+
+Task 5: Linker Role Explored using file1.c and file2.c
+
+These files illustrate how source code spanning multiple files can be joined into one executable using the linker.
+
+file1.c:
+* Defines a function named hello() which outputs a greeting.
+
+file2.c:
+* Forward declaration of hello(); actual call within main().
+
+Execution Path:
+1. hello() function written in file1.c.
+2. main() function in file2.c calls hello().
+3. Both source files are converted into object files separately.
+4. The linker stitches them together, matching function usage to its definition.
+5. Outcome: one final runnable program.
+
+This is an example of modular programming and subsequent linking.
+
+Task 6: Loader Responsibilities with simple_program.c
+
+A small demonstration focusing on the operating system’s loader, which readies dynamic libraries.
+
+Code Details:
+* Prints a statement and exits.
+
+Execution Steps:
+1. Prints out: "This is a simple program."
+2. Returns 0 (success status).
+
+Running ldd on the compiled binary reveals which external libraries are automatically loaded—demonstrating the loader’s job in prepping environment and dependencies.
+
+THE LINKER: MAIN FUNCTIONS
+
+What the Linker Achieves:
+
+* Combines multiple compiled files into one executable or library.
+* Resolves which functions or variables are being used, matching declarations to definitions across files (symbol resolution).
+* Allocates where segments of code/data live in memory (relocation).
+* Embeds external libraries if needed—either at compile time (static) or left for runtime (dynamic).
+* Reports any errors if something is missing or duplicated.
+
+Example: The linker matches the hello() function call in file2.c to its actual code in file1.c when creating the full program.
+
+THE LOADER: MAIN FUNCTIONS
+
+Loader Activities:
+
+* Moves the finished executable into memory when run.
+* Allocates memory sections for code, data, stack, heap.
+* Loads dynamic libraries and links them for program use.
+* Adjusts pointers and addresses as per actual load location.
+* Sets up command arguments, environment, and jumps to the main entry point.
+
+Example: Running ./simple_program is possible because the loader loads required system libraries (confirmed by ldd), prepares the environment, and starts execution.
+
+The loader routinely loads libraries like:
+- linux-vdso.so.1
+- libc.so.6
+- ld-linux.so
+
