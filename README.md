@@ -1,4 +1,187 @@
-# Lab-5 Assignment: Process Management and Compilation
+# CSE-333: System Process Management & Compilation Study
+
+A comprehensive exploration of Unix process management, compilation workflows, and the critical roles of linkers and loaders in modern operating systems.
+
+## 📋 Overview
+
+This repository demonstrates fundamental concepts in systems programming including:
+- Unix process creation mechanisms
+- Multi-file compilation workflows  
+- Linking strategies for modular code
+- Dynamic loading and library management
+- Automated build systems with Make
+
+## 🚀 Quick Start Guide
+
+#### System Requirements
+
+Ensure your development environment includes:
+- GCC compiler suite (version 7.0+)
+- POSIX-compliant operating system (Linux/Unix/macOS)
+- Make utility for build automation
+
+#### Setup Instructions
+
+```bash
+# Clone the repository
+git clone https://github.com/YasseenAbdelghany/CSE-333.git
+cd CSE-333
+
+# Build all examples
+make all
+```
+
+## 📚 Project Components
+
+### Component 1: Fork-Based Process Creation
+
+**Source File:** `process_creation.c`
+
+Explores Unix process creation through the `fork()` system call, demonstrating parent-child process relationships.
+
+**Key Concepts:**
+- Process duplication mechanics
+- PID (Process Identifier) management
+- Concurrent process execution patterns
+
+**Execution:**
+```bash
+make process_creation
+./process_creation
+```
+
+**Sample Output:**
+```
+Parent process executing. PID: [parent_pid]
+Child process executing. PID: [child_pid]
+```
+
+### Component 2: Multi-File Linking Example
+
+**Source Files:** `file1.c` + `file2.c`
+
+Illustrates the linker's capability to merge separate compilation units into unified executables.
+
+**Architecture:**
+- `file1.c`: Implements the `hello()` function
+- `file2.c`: Entry point calling external function
+
+**Build & Execute:**
+```bash
+make output_program
+./output_program
+```
+
+**Output:**
+```
+Hello from file1!
+```
+
+### Component 3: Dynamic Loading Exploration
+
+**Source File:** `simple_program.c`
+
+Basic program for examining runtime library loading behavior.
+
+**Usage:**
+```bash
+make simple_program
+./simple_program
+
+# Inspect dynamic dependencies
+ldd simple_program
+```
+
+**Expected Result:**
+```
+This is a simple program.
+```
+
+## 🔧 Build System Commands
+
+| Command | Purpose |
+|---------|---------|
+| `make all` | Compile all project components |
+| `make run` | Execute all programs sequentially |
+| `make clean` | Remove generated binaries and artifacts |
+| `make process_creation` | Build process creation demo only |
+| `make output_program` | Build linker example only |
+| `make simple_program` | Build loader example only |
+
+## 📖 Conceptual Deep Dive
+
+### The Linker's Role in Compilation
+
+A linker serves as the bridge between separately compiled code modules, creating a cohesive executable.
+
+**Primary Functions:**
+
+1. **Symbol Resolution**: Maps function/variable references to their implementations across object files
+2. **Address Relocation**: Assigns absolute memory addresses to symbols
+3. **Library Integration**: Incorporates external library code
+4. **Dependency Validation**: Identifies missing or conflicting symbols
+
+**Practical Example**: When compiling our multi-file project, the linker resolves the `hello()` call in `file2.c` by locating its definition in `file1.c`'s object code.
+
+### The Loader's Execution Responsibility  
+
+The loader operates as the OS component responsible for program initialization and execution setup.
+
+**Core Operations:**
+
+1. **Memory Allocation**: Reserves address space for program execution
+2. **Code Loading**: Transfers executable content from disk to RAM
+3. **Dynamic Library Resolution**: Loads shared libraries at runtime
+4. **Environment Setup**: Configures stack, heap, and registers
+5. **Transfer Control**: Begins program execution at entry point
+
+**Observation**: Running `ldd simple_program` reveals all shared objects the loader must resolve before execution begins (libc, ld-linux, etc.).
+
+## 🎯 Educational Objectives
+
+This project reinforces understanding of:
+- Process lifecycle in Unix-like operating systems
+- Compilation pipeline stages (preprocessing, compilation, assembly, linking)
+- Static vs. dynamic linking trade-offs
+- Build automation best practices
+- System-level programming in C
+
+## 📝 Development Notes
+
+**Compilation Stages Demonstrated:**
+1. **Preprocessing**: Header inclusion and macro expansion
+2. **Compilation**: Translation to assembly language
+3. **Assembly**: Conversion to machine code (object files)
+4. **Linking**: Combining object files into executable
+5. **Loading**: Runtime preparation by OS loader
+
+**To examine intermediate stages:**
+```bash
+# Generate object files only
+gcc -c file1.c -o file1.o
+gcc -c file2.c -o file2.o
+
+# Link manually
+gcc file1.o file2.o -o output_program
+
+# View symbols
+nm file1.o
+nm file2.o
+```
+
+## 🤝 Contributing
+
+This is an academic project for CSE-333 coursework. Improvements and suggestions are welcome through standard pull request workflows.
+
+## 📄 License
+
+Released under MIT License. See LICENSE file for complete terms.
+
+---
+
+**Repository:** YasseenAbdelghany/CSE-333  
+**Academic Context:** Systems Programming Fundamentals  
+**Lab Assignment:** Process Management & Compilation Mechanisms# Lab-5 Assignment: Process Management and Compilation
 
 This repository contains C code examples demonstrating process creation, the role of linkers and loaders, along with a Makefile for compilation.
 
