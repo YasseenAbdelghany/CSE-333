@@ -2,7 +2,7 @@
 
 A comprehensive exploration of Unix process management, compilation workflows, and the critical roles of linkers and loaders in modern operating systems.
 
-## 📋 Overview
+##  Overview
 
 This repository demonstrates fundamental concepts in systems programming including:
 - Unix process creation mechanisms
@@ -11,7 +11,7 @@ This repository demonstrates fundamental concepts in systems programming includi
 - Dynamic loading and library management
 - Automated build systems with Make
 
-## 🚀 Quick Start Guide
+##  Quick Start Guide
 
 #### System Requirements
 
@@ -31,7 +31,7 @@ cd CSE-333
 make all
 ```
 
-## 📚 Project Components
+##  Project Components
 
 ### Component 1: Fork-Based Process Creation
 
@@ -97,7 +97,7 @@ ldd simple_program
 This is a simple program.
 ```
 
-## 🔧 Build System Commands
+##  Build System Commands
 
 | Command | Purpose |
 |---------|---------|
@@ -108,7 +108,7 @@ This is a simple program.
 | `make output_program` | Build linker example only |
 | `make simple_program` | Build loader example only |
 
-## 📖 Conceptual Deep Dive
+##  Conceptual Deep Dive
 
 ### The Linker's Role in Compilation
 
@@ -137,7 +137,7 @@ The loader operates as the OS component responsible for program initialization a
 
 **Observation**: Running `ldd simple_program` reveals all shared objects the loader must resolve before execution begins (libc, ld-linux, etc.).
 
-## 🎯 Educational Objectives
+##  Educational Objectives
 
 This project reinforces understanding of:
 - Process lifecycle in Unix-like operating systems
@@ -146,7 +146,7 @@ This project reinforces understanding of:
 - Build automation best practices
 - System-level programming in C
 
-## 📝 Development Notes
+##  Development Notes
 
 **Compilation Stages Demonstrated:**
 1. **Preprocessing**: Header inclusion and macro expansion
@@ -169,11 +169,11 @@ nm file1.o
 nm file2.o
 ```
 
-## 🤝 Contributing
+##  Contributing
 
 This is an academic project for CSE-333 coursework. Improvements and suggestions are welcome through standard pull request workflows.
 
-## 📄 License
+##  License
 
 Released under MIT License. See LICENSE file for complete terms.
 
